@@ -43,7 +43,47 @@ function appendToDisplay(value) {
   }
 
 
-
+  function operate() {
+    if (currentOperation === null || firstNumber === null) {
+      return;
+    }
+    let secondNumber = parseFloat(currentNumber);
+    let result = null;
+  
+    if (previousOperationResult === null) {
+      // First operation
+      result = firstNumber;
+    } else {
+      // next operation
+      firstNumber = previousOperationResult;
+      result = firstNumber;
+    }
+  
+    if (currentOperation === '+') {
+      result += secondNumber;
+    } else if (currentOperation === '-') {
+      result -= secondNumber;
+    } else if (currentOperation === '*') {
+      result *= secondNumber;
+    } else if (currentOperation === '/') {
+      if (secondNumber === 0) {
+        display.innerText = 'Division by zero! Big NO NO!';
+        return;
+      } else {
+        result /= secondNumber;
+      }
+    }
+  
+    // Round the result to 2 decimal places
+    result = Math.round(result * 100) / 100;
+    // Store the result as previous operation result
+    previousOperationResult = result;
+    // Update the display
+    display.innerText = result.toString();
+    // Reset current number and operation
+    currentNumber = '';
+    currentOperation = null;
+  }
 
 numBtns.forEach((button) => {
     button.addEventListener('click', (event) => {
