@@ -43,6 +43,17 @@ function appendToDisplay(value) {
   }
 
 
+  function clearDisplay() {
+    // Clear the current number and operation
+    firstNumber = null;
+    previousOperationResult = null;
+    currentNumber = '';
+    currentOperation = null;
+    //result = null;
+    display.innerText = '';
+  }
+
+
   function operate() {
     if (currentOperation === null || firstNumber === null) {
       return;
@@ -98,3 +109,6 @@ numBtns.forEach((button) => {
       appendToDisplay(operator);
     });
   });
+
+
+  clearBtn.addEventListener('click', clearDisplay);
