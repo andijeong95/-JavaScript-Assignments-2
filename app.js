@@ -1,8 +1,11 @@
 // The assignment - create a basic calculator
 
 // Task 1: create the functions for the following operators - test each in the browser console:
-// add ( + ) 
 
+// example values:
+let a = 100;
+let b = 50;
+// add ( + ) 
 function add() {
     return a + b;     
 }
@@ -18,8 +21,8 @@ function multiply() {
 function divide() {
     return a / b;    
 }
-
-// console.log(`${add(a,b)}, ${subtract(a,b)}, ${multiply(a,b)}, ${divide(a,b)})`)
+// example output
+console.log(`${add(a,b)}, ${subtract(a,b)}, ${multiply(a,b)}, ${divide(a,b)})`)
 
 // Task 2:
 // create a new function operate()
