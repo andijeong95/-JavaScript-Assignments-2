@@ -96,6 +96,14 @@ function appendToDisplay(value) {
     currentOperation = null;
   }
 
+
+  function clickEqual() {
+    if (currentNumber !== '' && currentOperation !== null) {
+      operate();
+      previousOperationResult = null;
+    }
+  }
+
 numBtns.forEach((button) => {
     button.addEventListener('click', (event) => {
       let value = event.target.dataset.value;
@@ -112,3 +120,5 @@ numBtns.forEach((button) => {
 
 
   clearBtn.addEventListener('click', clearDisplay);
+
+  equalBtn.addEventListener('click', clickEqual);
