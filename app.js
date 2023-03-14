@@ -133,3 +133,21 @@ numBtns.forEach((button) => {
   equalBtn.addEventListener('click', clickEqual);
 
   backspaceBtn.addEventListener('click', removeNumber);
+
+
+  document.addEventListener('keydown', (event) => {
+    const key = event.key;
+  
+    if (!isNaN(key) || key === '.') {
+      appendToDisplay(key);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+      appendToDisplay(key);
+    } else if (key === 'Enter' || key === '=') {
+      //press enter
+      operate();
+    } else if (key === 'Escape') {    
+      clearDisplay();
+    } else if (key === 'Backspace') {
+      removeNumber();
+    }
+  });
