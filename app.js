@@ -104,6 +104,15 @@ function appendToDisplay(value) {
     }
   }
 
+  // Function to remove the last digit from the display
+function removeNumber() {
+    if (currentNumber.length > 0) {
+      // Remove the last character from the current number and update the display
+      currentNumber = currentNumber.slice(0, -1);
+      display.innerText = currentNumber;
+    }
+  }
+
 numBtns.forEach((button) => {
     button.addEventListener('click', (event) => {
       let value = event.target.dataset.value;
@@ -122,3 +131,5 @@ numBtns.forEach((button) => {
   clearBtn.addEventListener('click', clearDisplay);
 
   equalBtn.addEventListener('click', clickEqual);
+
+  backspaceBtn.addEventListener('click', removeNumber);
