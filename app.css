@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #00ffea, #003cff);
+}
+
+header {
+    background: rgb(31, 41, 55, .9);
+    color: #F9FAF8;
+    text-align: center;
+    font-style: normal;
+    padding: 20px;
+    margin-bottom: auto;
+}
+
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-width: 445px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-top: 2px ridge #ffffffd2;
+    border-left: 2px ridge #ffffffd2;
+    border-right: 3px groove #011d79de;
+    border-bottom: 3px groove #011d79de;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.display-container {
+    width: auto;
+    min-height: 100px;
+    color: #fff;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 10px;
+    margin-bottom: 1px;
+    border-radius: 10px;
+    border-top: 2px ridge #ffffffd2;
+    border-left: 2px ridge #ffffffd2;
+    border-right: 3px groove #011d79de;
+    border-bottom: 3px groove #011d79de;
+    background-color: rgba(31, 41, 55, 0.9);
+}
+
+.display-container > .previous-value-display {
+    font-size: 1.5rem;
+    color: #f2f1ff;
+}
+.display-container > .current-value-display {
+    font-size: 2.5rem;
+    color: #f2f1ff;
+}
+
+.calculator-key-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(120px, auto) repeat(6, 100px);
+    gap: 5px;
+}
+
+.button {
+    font-size: 2rem;
+    border-top: 2px ridge #ffffffd2;
+    border-left: 2px ridge #ffffffd2;
+    border-right: 3px groove #011d79de;
+    border-bottom: 3px groove #011d79de;
+    border-radius: 10px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.979);
+    transform: scale(0.99);
+  }
+
+.button.clear {
+    grid-column: span 2;
+    background-color: rgb(0, 60, 255);
+    color: #fff;
+}
+.button.clear:hover {
+    background-color: rgba(0, 60, 255, 0.75);
+}
+
+.button.plus-btn {
+    grid-row: span 2; 
+}
+
+.button.equal {
+    background-color: #00ffea;
+    border-radius: 10px;
+    grid-column: span 4;
+}
+.button.equal:hover {
+    background-color: rgba(0, 255, 234, .75);
+}
+
+.button.operator {
+    background-color: rgba(216, 216, 216, 0.75);
+}
+
+/* start footer section */
+footer {
+    background: #1f2937;
+    color: #F9FAF8;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    padding: 20px;
+    margin-top: auto;
+}
+/* end footer section */

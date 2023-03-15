@@ -5,8 +5,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="app.js" defer></script>
-	<link rel="stylesheet" href="styles.css">
+	<script src="./app.js" defer></script>
+	<link rel="stylesheet" href="./app.css">
 	<title>Calculator</title>
 </head>
 
@@ -16,25 +16,47 @@
 	</header>
 	<main>
 		<div class="calculator">
-			<div class="display"></div>
-			<button class="button operator" data-operator="/">/</button>
-			<button class="button operator" data-operator="*">*</button>
-			<button class="button operator" data-operator="-">-</button>
-			<button class="button operator" data-operator="+">+</button>
-			<button class="button" data-value="6">6</button>
-			<button class="button" data-value="7">7</button>
-			<button class="button" data-value="8">8</button>
-			<button class="button" data-value="9">9</button>
-			<button class="button" data-value="2">2</button>
-			<button class="button" data-value="3">3</button>
-			<button class="button" data-value="4">4</button>
-			<button class="button" data-value="5">5</button>
-			<button class="button" data-value="1">1</button>
-			<button class="button" data-value="0">0</button>
-			<button class="button" data-value=".">.</button>
-			<button class="button equal">=</button>
-			<button class="button clear">Clear</button>
-			<button class="button backspace">⌫</button>
+			<!-- top row display only -->
+			<div class="display-container">
+				<div class="previous-value-display" data-prev-value-display></div>
+            	<div class="current-value-display" data-curr-value-display></div>
+			</div>
+
+			<div class="calculator-key-grid">
+				<!-- second row -->
+				<button class="button clear">AC</button>        
+				<!--erase / backspace icon &#9003; === ⌫ -->
+				<button class="button backspace">&#9003;</button> 
+				<!--division icon &#247; === ÷ -->
+				<button class="button operator" data-operator="/">&#247;</button> 
+				
+				<!-- third row -->
+				<button class="button number" data-value="1">1</button>
+				<button class="button number" data-value="2">2</button>
+				<button class="button number" data-value="3">3</button>
+				<button class="button operator" data-operator="*">*</button>
+
+				<!-- fourth row -->
+				<button class="button number" data-value="4">4</button>
+				<button class="button number" data-value="5">5</button>
+				<button class="button number" data-value="6">6</button>
+				<button class="button operator" data-operator="-">-</button>
+
+				<!-- fifth row -->
+				<button class="button number" data-value="7">7</button>
+				<button class="button number" data-value="8">8</button>
+				<button class="button number" data-value="9">9</button>
+				<button class="button operator plus-btn" data-operator="+">+</button>
+
+				<!-- sixth row -->
+				<button class="button number" data-value=".">.</button>
+				<button class="button number" data-value="0">0</button>
+				<!--percent icon &#37; === % -->
+				<button class="button operator" data-operator="%">&#37;</button> 
+
+				<!-- seventh row -->
+				<button class="button equal">=</button>
+			</div>
 		</div>
 	</main>
 	<footer>

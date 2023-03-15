@@ -1,5 +1,7 @@
 // Select elements
-const display = document.querySelector('.display');
+let display = document.querySelector('.display');
+const prevDisplayValue = document.querySelector('[data-prev-value-display]');
+const currDisplayValue = document.querySelector('[data-curr-value-display]');
 const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
 const equalBtn = document.querySelector('.equal');
@@ -8,6 +10,10 @@ const numBtns = document.querySelectorAll(
   '.button:not(.operator):not(.clear):not(.backspace):not(.equal)'
 );
 
+prevDisplayValue.textContent = " ";
+currDisplayValue.textContent = 0;
+
+display = prevDisplayValue && currDisplayValue;
 
 let firstNumber = null;
 let currentNumber = '';
@@ -39,7 +45,7 @@ function appendToDisplay(value) {
       // Digit or decimal button clicked
       currentNumber += value;
     }
-    display.innerText = currentNumber;
+    currDisplayValue.textContent = currentNumber;
   }
 
 
@@ -50,7 +56,7 @@ function appendToDisplay(value) {
     currentNumber = '';
     currentOperation = null;
     //result = null;
-    display.innerText = '';
+    display.innerText = 0;
   }
 
 
@@ -78,7 +84,7 @@ function appendToDisplay(value) {
       result *= secondNumber;
     } else if (currentOperation === '/') {
       if (secondNumber === 0) {
-        display.innerText = 'Division by zero! Big NO NO!';
+        display.innerText = 'cannot divide by 0';
         return;
       } else {
         result /= secondNumber;
