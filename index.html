@@ -1,94 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<<<<<<< Updated upstream
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./styles.css" rel="stylesheet">
-    <script src="./app.js" defer></script>
-    <title>Calculator</title>
-</head>
-<body>
-    <main>
-        <div class="calculator-container">
-            <h1>Calculator</h1>
-            
-            <div class="calculator-display">
-                <div class="current-value"></div>
-                <div class="previous-value"></div>
-            </div>
 
-            <button class="number-button" value="7">7</button>
-            <button class="number-button" value="8">8</button>
-            <button class="number-button" value="9">9</button>
-            <button class="operator-button">*</button>
-            <br />    
-        
-            <button class="number-button" value="4">4</button>
-            <button class="number-button" value="5">5</button>
-            <button class="number-button" value="6">6</button>
-            <button class="operator-button">-</button>
-            <br />
-        
-            <button class="number-button" value="1">1</button>
-            <button class="number-button" value="2">2</button>
-            <button class="number-button" value="3">3</button>
-            <button class="operator-button">+</button>
-            <br />
-        
-            <button class="number-button">.</button>
-            <button class="number-button" value="0">0</button>    
-            <button class="all-clear-button two-cols">AC</button>
-            <button class="operator-button">/</button>
-            <br />
-        
-            <button class="equals-button two-cols calculation" value="=">=</button>
-    
-        </div>
-    </div>
-=======
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Calculator</title>
-  <link href="index.css" rel="stylesheet">
-  <script src="app.js" defer></script>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script defer src="https://kit.fontawesome.com/eb74a2a952.js" crossorigin="anonymous"></script>
+	<script src="./app.js" defer></script>
+	<link rel="stylesheet" href="./app.css">
+	<title>Calculator</title>
 </head>
-<body>
-    <!-- to create a grid of 4 columns and 6 rows -->
-    <div class="calculator-grid">
-        <!-- top row display only -->
-        <div class="output-screen">
-            <div class="previous-value"></div>
-            <div class="current-value"></div>
-        </div>
-        <!-- second row -->
-        <button class="clear-btn">AC</button>        
-        <button class="delete-btn">DEL</button>
-        <button class="operator-btn">&#247;</button> <!--division icon &#247;-->
-        <!-- third row -->
-        <button class="number-btn">1</button>
-        <button class="number-btn">2</button>
-        <button class="number-btn">3</button>
-        <button class="operator-btn">*</button>
-        <!-- fourth row -->
-        <button class="number-btn">4</button>
-        <button class="number-btn">5</button>
-        <button class="number-btn">6</button>
-        <button class="operator-btn">-</button>
-        <!-- fifth row -->
-        <button class="number-btn">7</button>
-        <button class="number-btn">8</button>
-        <button class="number-btn">9</button>
-        <button class="operator-btn plus-btn">+</button>
-        <!-- sixth row -->
-        <button class="number-btn">.</button>
-        <button class="number-btn">0</button>
-        <button class="operator-btn">&#37;</button>
-        <!-- seventh row -->
-        <button class="equals-btn">=</button>
-    </div>    
->>>>>>> Stashed changes
+
+<body>	
+	<header>
+		<h1>Calculator</h1>
+		<button id="dark-mode" onclick="darkMode()">
+			<span class="sun-icon">
+				<i class="fa-regular fa-sun fa-2x"></i>
+			</span>
+			<span class="moon-icon">
+				<i class="fa-solid fa-moon fa-2x"></i>
+			</span>
+		</button>
+	</header>
+	<div class="calculator">			
+		<!-- top row display only -->
+		<div class="display-container">
+			<div class="previous-value-display" data-prev-value-display></div>
+			<div class="current-value-display" data-curr-value-display></div>
+		</div>
+			
+		<div class="calculator-key-grid">
+			<!-- second row -->
+			<button class="button clear">AC</button>
+			<!--erase / backspace icon &#9003; === ⌫ -->
+			<button class="button backspace">&#9003;</button>
+			<!--division icon &#247; === ÷ -->
+			<button class="button operator" data-operator="/">&#247;</button>
+			
+			<!-- third row -->
+			<button class="button number" data-value="1">1</button>
+			<button class="button number" data-value="2">2</button>
+			<button class="button number" data-value="3">3</button>
+			<button class="button operator" data-operator="*">*</button>
+			
+			<!-- fourth row -->
+			<button class="button number" data-value="4">4</button>
+			<button class="button number" data-value="5">5</button>
+			<button class="button number" data-value="6">6</button>
+			<button class="button operator" data-operator="-">-</button>
+			
+			<!-- fifth row -->
+			<button class="button number" data-value="7">7</button>
+			<button class="button number" data-value="8">8</button>
+			<button class="button number" data-value="9">9</button>
+			<button class="button operator" data-operator="+">+</button>
+			
+			<!-- sixth row -->
+			<button class="button number" data-value=".">.</button>
+			<button class="button number" data-value="0">0</button>
+			<button class="button equal">=</button>				
+		</div>
+	</div>	
+	<footer>
+		<small class="copy">Copyright &copy;</small>
+	</footer>
 </body>
 </html>
