@@ -8,7 +8,6 @@ const numBtns = document.querySelectorAll(
   '.button:not(.operator):not(.clear):not(.backspace):not(.equal)'
 );
 
-
 display.innerText = '0';
 let firstNumber = null;
 let currentNumber = '';
@@ -20,7 +19,6 @@ function appendToDisplay(value) {
     // If the user tries to input more than one decimal point, ignore the input
     return;
   }
-
   if (isNaN(value) && value !== '.') {
     // Operator button clicked
     if (currentOperation !== null) {
@@ -37,29 +35,28 @@ function appendToDisplay(value) {
   } else {
     // Digit or decimal button clicked
     currentNumber += value;
-    display.innerText = currentNumber;
+    display.innerText = currentNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 }
 
+function clearDisplay() {
+  // Clear the current number and operation
+  firstNumber = null;
+  previousOperationResult = null;
+  currentNumber = '';
+  currentOperation = null;
+  //result = null;
+  display.innerText = '0';
+}
 
-  function clearDisplay() {
-    // Clear the current number and operation
-    firstNumber = null;
-    previousOperationResult = null;
-    currentNumber = '';
-    currentOperation = null;
-    //result = null;
-    display.innerText = '0';
+
+function operate() {
+  if (currentOperation === null || firstNumber === null) {
+    return;
   }
-
-
-  function operate() {
-    if (currentOperation === null || firstNumber === null) {
-      return;
-    }
     let secondNumber = parseFloat(currentNumber);
     let result = null;
-
+  
     if (previousOperationResult === null) {
       // First operation
       result = firstNumber;
@@ -67,7 +64,7 @@ function appendToDisplay(value) {
       // next operation
       firstNumber = previousOperationResult;
       result = firstNumber;
-    }
+    }  
 
     if (currentOperation === '+') {
       result += secondNumber;
@@ -83,77 +80,76 @@ function appendToDisplay(value) {
         result /= secondNumber;
       }
     }
-    // round answers with long decimals so that they don’t overflow the screen
-    result = Math.round(result * 10000000000000) / 10000000000000;
-    // Store the result as previous operation result
-    previousOperationResult = result;
-    // Update the display
-    display.innerText = result.toString();
-    // Reset current number and operation
-    currentNumber = '';
-    currentOperation = null;
+  // round answers with long decimals so that they don’t overflow the screen
+  result = Math.round(result * 10000000000000) / 10000000000000;
+  // Store the result as previous operation result
+  previousOperationResult = result;
+  // Update the display
+  display.innerText = result.toString().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  // Reset current number and operation
+  currentNumber = '';
+  currentOperation = null;
+}
+
+
+function clickEqual() {
+  if (currentNumber !== '' && currentOperation !== null) {
+    operate();
+    currentNumber = firstNumber;
   }
+}
 
-
-  function clickEqual() {
-    if (currentNumber !== '' && currentOperation !== null) {
-      operate();
-      currentNumber = firstNumber;
-      // previousOperationResult = null;
-    }
-  }
-
-  // Function to remove the last digit from the display
+// Function to remove the last digit from the display
 function removeNumber() {
-    if (currentNumber.length > 0) {
-      // Remove the last character from the current number and update the display
-      currentNumber = currentNumber.slice(0, -1);
-      display.innerText = currentNumber;
-    }
+  if (currentNumber.length > 0) {
+    // Remove the last character from the current number and update the display
+    currentNumber = currentNumber.slice(0, -1);
+    display.innerText = currentNumber;
   }
+}
 
 numBtns.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      let value = event.target.dataset.value;
-      appendToDisplay(value);
-    });
+  button.addEventListener('click', (event) => {
+    let value = event.target.dataset.value;
+    appendToDisplay(value);
   });
+});
 
-  operatorBtns.forEach((button) => {
-    button.addEventListener('click', () => {
-      let operator = button.getAttribute('data-operator');
-      appendToDisplay(operator);
-    });
+operatorBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    let operator = button.getAttribute('data-operator');
+    appendToDisplay(operator);
   });
+});
 
 
-  clearBtn.addEventListener('click', clearDisplay);
+clearBtn.addEventListener('click', clearDisplay);
 
-  equalBtn.addEventListener('click', clickEqual);
+equalBtn.addEventListener('click', clickEqual);
 
-  backspaceBtn.addEventListener('click', removeNumber);
+backspaceBtn.addEventListener('click', removeNumber);
 
 
-  document.addEventListener('keydown', (event) => {
-    const key = event.key;
+document.addEventListener('keydown', (event) => {
+  const key = event.key;
 
-    if (!isNaN(key) || key === '.') {
-      appendToDisplay(key);
-    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
-      appendToDisplay(key);
-    } else if (key === 'Enter' || key === '=') {
-      //press enter
-      operate();
-    } else if (key === 'Escape') {
-      clearDisplay();
-    } else if (key === 'Backspace') {
-      removeNumber();
-    }
-  });
+  if (!isNaN(key) || key === '.') {
+    appendToDisplay(key);
+  } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+    appendToDisplay(key);
+  } else if (key === 'Enter' || key === '=') {
+    //press enter
+    operate();
+  } else if (key === 'Escape') {
+    clearDisplay();
+  } else if (key === 'Backspace') {
+    removeNumber();
+  }
+});
 
-  // night button
-  const darkMode = document.getElementById('dark-mode');
+// night button
+const darkMode = document.getElementById('dark-mode');
 
-  darkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
+darkMode.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
