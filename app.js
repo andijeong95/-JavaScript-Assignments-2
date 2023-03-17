@@ -77,7 +77,7 @@ function appendToDisplay(value) {
       result *= secondNumber;
     } else if (currentOperation === '/') {
       if (secondNumber === 0) {
-        display.innerText = 'cannot divide by 0';
+        display.innerText = 'Error: Division by zero! Big NO NO!';
         return;
       } else {
         result /= secondNumber;
