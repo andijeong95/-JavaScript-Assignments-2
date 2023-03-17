@@ -15,6 +15,10 @@ let currentOperation = false;
 let previousOperationResult = null;
 
 function appendToDisplay(value) {
+  if(display.innerText === '0' && value === '0'){
+    return;
+  }
+
   if (value === '.' && currentNumber.includes('.')) {
     // If the user tries to input more than one decimal point, ignore the input
     return;
