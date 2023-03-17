@@ -1,11 +1,10 @@
 body {
     font-family: 'Lucida Sans', sans-serif;
-    margin: 0; 
-    padding: 0;  
-    height: 100vh; 
-    width: auto;
     background-color: #d8d6f8;
-    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
 }
 
 header {
@@ -13,11 +12,16 @@ header {
     background-color: rgba(31, 41, 55, 0.9);
     height: 50px;
     color: #fff;
-    justify-content: space-around;
+    justify-content:space-between;
     align-items: center;
-    margin: auto;
+    margin-bottom: auto;
     text-transform: uppercase;
-    padding: 5px;
+    padding: 20px;    
+}
+
+h1{
+  flex: 1;
+  text-align: center;
 }
 
 #dark-mode {
@@ -26,6 +30,7 @@ header {
     font-size: 1.1rem;
     padding: 5px;
     border: 2px solid #deebf7d2;
+    /* text-align: end; */
 }
 
 #dark-mode .sun-icon .moon-icon {
@@ -37,7 +42,7 @@ header {
     flex-direction: column;
     min-width: 445px;
     max-width: 600px;    
-    margin: 0;
+    margin: 0 auto;
     padding: 10px 15px;
     border-top: 2px ridge #8dc3f7d2;
     border-left: 2px ridge #8dc3f7d2;
@@ -47,7 +52,7 @@ header {
     box-shadow: 4px 4px 6px #011d79de;
 }
 
-.display-container {
+.display {
     grid-column: span 4;
     height: 100px;
     color: #fff;
@@ -130,10 +135,12 @@ button:hover {
 
 footer {
     background-color: rgba(31, 41, 55, 0.9);
-    height: 30px;
-    padding: 5px;
-    text-align: center;
     color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    padding: 20px;
+    margin-top: auto;
 }
 
 /* ----------------------------Dark / Light Switch ---------------------- */
@@ -152,7 +159,7 @@ footer {
     box-shadow: none;
   }
   
-  .dark-mode .display-container {
+  .dark-mode .display {
     border-top: 3px ridge #d2d1d3e1;
     border-left: 3px ridge #d2d1d3e1;
     border-right: 3px groove #000000de;

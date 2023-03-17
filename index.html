@@ -11,10 +11,10 @@
 	<title>Calculator</title>
 </head>
 
-<body>	
+<body>
 	<header>
 		<h1>Calculator</h1>
-		<button id="dark-mode">
+		<button type="button" id="dark-mode">
 			<span class="sun-icon">
 				<i class="fa-regular fa-sun fa-2x"></i>
 			</span>
@@ -23,47 +23,46 @@
 			</span>
 		</button>
 	</header>
-	<div class="calculator">			
-		<!-- top row display only -->
-		<div class="display-container">
-			<div class="previous-value-display" data-prev-value-display></div>
-			<div class="current-value-display" data-curr-value-display></div>
+	<main>
+		<div class="calculator">
+			<!-- top row display only -->
+			<div class="display"></div>
+
+			<div class="calculator-key-grid">
+				<!-- second row -->
+				<button type="button" class="button clear">AC</button>
+				<!--erase / backspace icon &#9003; === ⌫ -->
+				<button type="button" class="button backspace">&#9003;</button>
+				<button type="button" class="button operator" data-operator="/">/</button>
+
+				<!-- third row -->
+				<button type="button" class="button number" data-value="1">1</button>
+				<button type="button" class="button number" data-value="2">2</button>
+				<button type="button" class="button number" data-value="3">3</button>
+				<button type="button" class="button operator" data-operator="*">*</button>
+
+				<!-- fourth row -->
+				<button type="button" class="button number" data-value="4">4</button>
+				<button type="button" class="button number" data-value="5">5</button>
+				<button type="button" class="button number" data-value="6">6</button>
+				<button type="button" class="button operator" data-operator="-">-</button>
+
+				<!-- fifth row -->
+				<button type="button" class="button number" data-value="7">7</button>
+				<button type="button" class="button number" data-value="8">8</button>
+				<button type="button" class="button number" data-value="9">9</button>
+				<button class="button operator" data-operator="+">+</button>
+
+				<!-- sixth row -->
+				<button type="button" class="button number" data-value=".">.</button>
+				<button type="button" class="button number" data-value="0">0</button>
+				<button type="button" class="button equal">=</button>
+			</div>
 		</div>
-			
-		<div class="calculator-key-grid">
-			<!-- second row -->
-			<button class="button clear">AC</button>
-			<!--erase / backspace icon &#9003; === ⌫ -->
-			<button class="button backspace">&#9003;</button>
-			<!--division icon &#247; === ÷ -->
-			<button class="button operator" data-operator="/">&#247;</button>
-			
-			<!-- third row -->
-			<button class="button number" data-value="1">1</button>
-			<button class="button number" data-value="2">2</button>
-			<button class="button number" data-value="3">3</button>
-			<button class="button operator" data-operator="*">*</button>
-			
-			<!-- fourth row -->
-			<button class="button number" data-value="4">4</button>
-			<button class="button number" data-value="5">5</button>
-			<button class="button number" data-value="6">6</button>
-			<button class="button operator" data-operator="-">-</button>
-			
-			<!-- fifth row -->
-			<button class="button number" data-value="7">7</button>
-			<button class="button number" data-value="8">8</button>
-			<button class="button number" data-value="9">9</button>
-			<button class="button operator" data-operator="+">+</button>
-			
-			<!-- sixth row -->
-			<button class="button number" data-value=".">.</button>
-			<button class="button number" data-value="0">0</button>
-			<button class="button equal">=</button>				
-		</div>
-	</div>	
+	</main>
 	<footer>
 		<small class="copy">Copyright &copy;</small>
 	</footer>
 </body>
+
 </html>
