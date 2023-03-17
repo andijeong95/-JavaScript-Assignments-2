@@ -11,7 +11,7 @@ const numBtns = document.querySelectorAll(
 display.innerText = '0';
 let firstNumber = null;
 let currentNumber = '';
-let currentOperation = null;
+let currentOperation = false;
 let previousOperationResult = null;
 
 function appendToDisplay(value) {
@@ -21,9 +21,10 @@ function appendToDisplay(value) {
   }
   if (isNaN(value) && value !== '.') {
     // Operator button clicked
-    if (currentOperation !== null) {
+    if (currentOperation == true) {
       // An operation has already been chosen, so calculate the result
       operate();
+      currentOperation = true;
     }
     currentOperation = value;
     if (previousOperationResult !== null) {
@@ -79,6 +80,10 @@ function operate() {
       } else {
         result /= secondNumber;
       }
+    }
+
+    if (previousOperationResult === currentOperation) {
+      return previousOperationResult;
     }
   // round answers with long decimals so that they don’t overflow the screen
   result = Math.round(result * 10000000000000) / 10000000000000;
