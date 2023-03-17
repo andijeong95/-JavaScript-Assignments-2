@@ -10,27 +10,38 @@ body {
 header {
     display: flex;
     background-color: rgba(31, 41, 55, 0.9);
-    height: 50px;
+    height: auto;
     color: #fff;
-    justify-content:space-between;
-    align-items: center;
-    margin-bottom: auto;
-    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;    
     padding: 20px;    
 }
 
-h1{
-  flex: 1;
-  text-align: center;
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
 }
 
 #dark-mode {
+    transform: none;
     border-radius: 20px;
     height: auto;
+    width: auto;
     font-size: 1.1rem;
-    padding: 5px;
-    border: 2px solid #deebf7d2;
-    /* text-align: end; */
+    padding: 10px;
+    color: #fff;
+    border: 3px solid #fcfcfc;
+    background-color: rgba(31, 41, 55, 0.9);
+}
+
+#hide-word {
+    visibility: hidden;
 }
 
 #dark-mode .sun-icon .moon-icon {
@@ -55,8 +66,8 @@ h1{
 .display {
     grid-column: span 4;
     height: 100px;
-    color: #fff;
-    font-size: 2rem;
+    color: #000;
+    font-size: 3rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -69,7 +80,7 @@ h1{
     border-left: 2px ridge #8dc3f7d2;
     border-right: 3px groove #011d79de;
     border-bottom: 3px groove #011d79de;
-    background-color: rgba(31, 41, 55, 0.9);
+    background-color: #dbe5f1e6;
 }
 
 .calculator-key-grid {
@@ -160,6 +171,8 @@ footer {
   }
   
   .dark-mode .display {
+    background-color: #2a2941;
+    color:rgba(255, 255, 255, 0.979);
     border-top: 3px ridge #d2d1d3e1;
     border-left: 3px ridge #d2d1d3e1;
     border-right: 3px groove #000000de;

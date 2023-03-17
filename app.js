@@ -77,7 +77,7 @@ function appendToDisplay(value) {
       result *= secondNumber;
     } else if (currentOperation === '/') {
       if (secondNumber === 0) {
-        display.innerText = 'Error: Division by zero! Big NO NO!';
+        display.innerText = 'cannot divide by 0';
         return;
       } else {
         result /= secondNumber;
@@ -98,7 +98,8 @@ function appendToDisplay(value) {
   function clickEqual() {
     if (currentNumber !== '' && currentOperation !== null) {
       operate();
-      previousOperationResult = null;
+      currentNumber = firstNumber;
+      // previousOperationResult = null;
     }
   }
 

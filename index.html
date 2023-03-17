@@ -14,12 +14,14 @@
 <body>
 	<header>
 		<h1>Calculator</h1>
-		<button type="button" id="dark-mode">
+		<span id="hide-word">br</span>
+		<button aria-label="toggle button to change background to light or dark mode" type="button" id="dark-mode">
 			<span class="sun-icon">
-				<i class="fa-regular fa-sun fa-2x"></i>
+				<i class="fa-regular fa-sun fa-2x" ></i>
 			</span>
+			<span id="hide-word">br</span>
 			<span class="moon-icon">
-				<i class="fa-solid fa-moon fa-2x"></i>
+				<i class="fa-solid fa-moon fa-2x" ></i>
 			</span>
 		</button>
 	</header>
@@ -33,7 +35,7 @@
 				<button type="button" class="button clear">AC</button>
 				<!--erase / backspace icon &#9003; === ⌫ -->
 				<button type="button" class="button backspace">&#9003;</button>
-				<button type="button" class="button operator" data-operator="/">/</button>
+				<button type="button" class="button operator" data-operator="/">&#247;</button>
 
 				<!-- third row -->
 				<button type="button" class="button number" data-value="1">1</button>
