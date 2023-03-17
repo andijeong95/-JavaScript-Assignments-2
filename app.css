@@ -16,8 +16,12 @@ header {
     align-items: center;
     margin-bottom: auto;
     text-transform: uppercase;
-    padding: 20px;
-    
+    padding: 20px;    
+}
+
+h1{
+  flex: 1;
+  text-align: center;
 }
 
 #dark-mode {
@@ -26,7 +30,7 @@ header {
     font-size: 1.1rem;
     padding: 5px;
     border: 2px solid #deebf7d2;
-    text-align: end;
+    /* text-align: end; */
 }
 
 #dark-mode .sun-icon .moon-icon {
