@@ -17,7 +17,7 @@ them in your browser’s console.
 3. [X]  Create a basic HTML calculator with buttons for each digit, each of the above functions and
 an “Equals” key.  
 
-    -   [X] a. There should also be a display for the calculator.  
+    -   [X] a. There should also be a display for   the calculator.  
 
     -   [X] b. Add a “clear” button. 
 
