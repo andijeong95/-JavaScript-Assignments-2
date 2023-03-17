@@ -47,7 +47,7 @@ header {
     box-shadow: 4px 4px 6px #011d79de;
 }
 
-.display-container {
+.display {
     grid-column: span 4;
     height: 100px;
     color: #fff;
@@ -152,7 +152,7 @@ footer {
     box-shadow: none;
   }
   
-  .dark-mode .display-container {
+  .dark-mode .display {
     border-top: 3px ridge #d2d1d3e1;
     border-left: 3px ridge #d2d1d3e1;
     border-right: 3px groove #000000de;

@@ -1,7 +1,5 @@
 // Select elements
-let display = document.querySelector('.display');
-const prevDisplayValue = document.querySelector('[data-prev-value-display]');
-const currDisplayValue = document.querySelector('[data-curr-value-display]');
+const display = document.querySelector('.display');
 const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
 const equalBtn = document.querySelector('.equal');
@@ -10,43 +8,38 @@ const numBtns = document.querySelectorAll(
   '.button:not(.operator):not(.clear):not(.backspace):not(.equal)'
 );
 
-prevDisplayValue.textContent = " ";
-currDisplayValue.textContent = 0;
 
-display = prevDisplayValue && currDisplayValue;
-
+display.innerText = '0';
 let firstNumber = null;
 let currentNumber = '';
 let currentOperation = null;
 let previousOperationResult = null;
-//let result = null;
-
 
 function appendToDisplay(value) {
-    if (value === '.' && currentNumber.includes('.')) {
-      // If the user tries to input more than one decimal point, ignore the input
-      return;
-    }
-  
-    if (isNaN(value) && value !== '.') {
-      // Operator button clicked
-      if (currentOperation !== null) {
-        // An operation has already been chosen, so calculate the result
-        operate();
-      }
-      currentOperation = value;
-      if (previousOperationResult !== null) {
-        firstNumber = previousOperationResult;
-      } else {
-        firstNumber = parseFloat(currentNumber);
-      }
-      currentNumber = '';
-    } else {
-      // Digit or decimal button clicked
-      currentNumber += value;
-    }
-    currDisplayValue.textContent = currentNumber;
+  if (value === '.' && currentNumber.includes('.')) {
+    // If the user tries to input more than one decimal point, ignore the input
+    return;
   }
+
+  if (isNaN(value) && value !== '.') {
+    // Operator button clicked
+    if (currentOperation !== null) {
+      // An operation has already been chosen, so calculate the result
+      operate();
+    }
+    currentOperation = value;
+    if (previousOperationResult !== null) {
+      firstNumber = previousOperationResult;
+    } else {
+      firstNumber = parseFloat(currentNumber);
+    }
+    currentNumber = ''; 
+  } else {
+    // Digit or decimal button clicked
+    currentNumber += value;
+    display.innerText = currentNumber;
+  }
+}
 
 
   function clearDisplay() {
@@ -56,7 +49,7 @@ function appendToDisplay(value) {
     currentNumber = '';
     currentOperation = null;
     //result = null;
-    display.innerText = 0;
+    display.innerText = '0';
   }
 
 
@@ -66,7 +59,7 @@ function appendToDisplay(value) {
     }
     let secondNumber = parseFloat(currentNumber);
     let result = null;
-  
+
     if (previousOperationResult === null) {
       // First operation
       result = firstNumber;
@@ -75,7 +68,7 @@ function appendToDisplay(value) {
       firstNumber = previousOperationResult;
       result = firstNumber;
     }
-  
+
     if (currentOperation === '+') {
       result += secondNumber;
     } else if (currentOperation === '-') {
@@ -90,9 +83,8 @@ function appendToDisplay(value) {
         result /= secondNumber;
       }
     }
-  
-    // Round the result to 2 decimal places
-    result = Math.round(result * 100) / 100;
+    // round answers with long decimals so that they don’t overflow the screen
+    result = Math.round(result * 10000000000000) / 10000000000000;
     // Store the result as previous operation result
     previousOperationResult = result;
     // Update the display
@@ -125,7 +117,7 @@ numBtns.forEach((button) => {
       appendToDisplay(value);
     });
   });
-  
+
   operatorBtns.forEach((button) => {
     button.addEventListener('click', () => {
       let operator = button.getAttribute('data-operator');
@@ -143,7 +135,7 @@ numBtns.forEach((button) => {
 
   document.addEventListener('keydown', (event) => {
     const key = event.key;
-  
+
     if (!isNaN(key) || key === '.') {
       appendToDisplay(key);
     } else if (key === '+' || key === '-' || key === '*' || key === '/') {
@@ -151,7 +143,7 @@ numBtns.forEach((button) => {
     } else if (key === 'Enter' || key === '=') {
       //press enter
       operate();
-    } else if (key === 'Escape') {    
+    } else if (key === 'Escape') {
       clearDisplay();
     } else if (key === 'Backspace') {
       removeNumber();
