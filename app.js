@@ -15,10 +15,15 @@ let currentOperation = false;
 let previousOperationResult = null;
 
 function appendToDisplay(value) {
+  
+  if(display.innerText === '0' && value === '0'){
+    return;
+  }
   if (value === '.' && currentNumber.includes('.')) {
     // If the user tries to input more than one decimal point, ignore the input
     return;
   }
+  
   if (isNaN(value) && value !== '.') {
     // Operator button clicked
     if (currentOperation == true) {
@@ -40,6 +45,7 @@ function appendToDisplay(value) {
   }
 }
 
+
 function clearDisplay() {
   // Clear the current number and operation
   firstNumber = null;
@@ -57,7 +63,7 @@ function operate() {
   }
     let secondNumber = parseFloat(currentNumber);
     let result = null;
-  
+      
     if (previousOperationResult === null) {
       // First operation
       result = firstNumber;
@@ -90,10 +96,10 @@ function operate() {
   // Store the result as previous operation result
   previousOperationResult = result;
   // Update the display
-  display.innerText = result.toString().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  display.innerText = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   // Reset current number and operation
   currentNumber = '';
-  currentOperation = null;
+  currentOperation = null;  
 }
 
 
