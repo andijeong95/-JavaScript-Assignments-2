@@ -9,8 +9,8 @@ const numBtns = document.querySelectorAll(
 );
 
 display.innerText = '0';
-let firstNumber = [''];
-let currentNumber = [''];
+let firstNumber = '';
+let currentNumber = '';
 let currentOperation = false;
 let previousOperationResult = null;
 
@@ -34,7 +34,7 @@ let a = 100;
 let b = 50;
 console.log(add(a,b), subtract(a,b), multiply(a,b), divide(a,b));
 
-// 
+// create operate function
 
 function operate() {
   if (currentOperation === null || firstNumber === null) {
