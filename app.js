@@ -89,7 +89,7 @@ function operate() {
       return previousOperationResult;
     }
   // round answers with long decimals so that they don’t overflow the screen
-  result = Math.round(result * 10000000000000) / 10000000000000;
+  result = Math.round(result * 1000000) / 1000000;
   // Store the result as previous operation result
   previousOperationResult = result;
   // Update the display - for display numbers longer than 3 digits length, add commas in appropriate positions
