@@ -1,4 +1,4 @@
-// Select elements
+// Select DOM elements
 const display = document.querySelector('.display');
 const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
@@ -9,18 +9,85 @@ const numBtns = document.querySelectorAll(
 );
 
 display.innerText = '0';
-let firstNumber = null;
-let currentNumber = '';
+let firstNumber = [''];
+let currentNumber = [''];
 let currentOperation = false;
 let previousOperationResult = null;
 
-function appendToDisplay(value) {
-  
-  if(display.innerText === '0' && value === '0'){
+// basic functions of a calculator
+
+function add(a,b) {
+  return a + b;
+}
+function subtract(a,b) {
+  return a - b;
+}
+function multiply(a,b) {
+  return a * b;
+}
+function divide(a,b) {
+  return a / b;
+}
+
+// test basic functions - in console
+let a = 100;
+let b = 50;
+console.log(add(a,b), subtract(a,b), multiply(a,b), divide(a,b));
+
+// 
+
+function operate() {
+  if (currentOperation === null || firstNumber === null) {
     return;
   }
+    let secondNumber = parseFloat(currentNumber);
+    let result = '';
+      
+    if (previousOperationResult === null) {
+      // First operation
+      result = firstNumber;
+    } else {
+      // next operation
+      firstNumber = previousOperationResult;
+      result = firstNumber;
+    }  
+
+    if (currentOperation === '+') {
+      result += secondNumber;
+    } else if (currentOperation === '-') {
+      result -= secondNumber;
+    } else if (currentOperation === '*') {
+      result *= secondNumber;
+    } else if (currentOperation === '/') {
+      if (secondNumber === 0) {
+        display.innerText = 'cannot divide by 0';
+        return;
+      } else {
+        result /= secondNumber;
+      }
+    }
+
+    if (previousOperationResult === currentOperation) {
+      return previousOperationResult;
+    }
+  // round answers with long decimals so that they don’t overflow the screen
+  result = Math.round(result * 10000000000000) / 10000000000000;
+  // Store the result as previous operation result
+  previousOperationResult = result;
+  // Update the display - for display numbers longer than 3 digits length, add commas in appropriate positions
+  display.innerText = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Reset current number and operation
+  currentNumber = '';
+  currentOperation = null;  
+}
+
+function appendToDisplay(value) {
+  // stops the user inputting a 0 as first number - can only start with a number 1 - 9 or decimal  
+  if (display.innerText === '0' && value === '0') return;  
+  
+  // If the user tries to input more than one decimal point, ignore the input
   if (value === '.' && currentNumber.includes('.')) {
-    // If the user tries to input more than one decimal point, ignore the input
     return;
   }
   
@@ -57,50 +124,7 @@ function clearDisplay() {
 }
 
 
-function operate() {
-  if (currentOperation === null || firstNumber === null) {
-    return;
-  }
-    let secondNumber = parseFloat(currentNumber);
-    let result = null;
-      
-    if (previousOperationResult === null) {
-      // First operation
-      result = firstNumber;
-    } else {
-      // next operation
-      firstNumber = previousOperationResult;
-      result = firstNumber;
-    }  
 
-    if (currentOperation === '+') {
-      result += secondNumber;
-    } else if (currentOperation === '-') {
-      result -= secondNumber;
-    } else if (currentOperation === '*') {
-      result *= secondNumber;
-    } else if (currentOperation === '/') {
-      if (secondNumber === 0) {
-        display.innerText = 'cannot divide by 0';
-        return;
-      } else {
-        result /= secondNumber;
-      }
-    }
-
-    if (previousOperationResult === currentOperation) {
-      return previousOperationResult;
-    }
-  // round answers with long decimals so that they don’t overflow the screen
-  result = Math.round(result * 10000000000000) / 10000000000000;
-  // Store the result as previous operation result
-  previousOperationResult = result;
-  // Update the display
-  display.innerText = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  // Reset current number and operation
-  currentNumber = '';
-  currentOperation = null;  
-}
 
 
 function clickEqual() {
