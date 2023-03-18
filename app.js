@@ -9,32 +9,51 @@ const numBtns = document.querySelectorAll(
 );
 
 display.innerText = '0';
-let firstNumber = '';
+let firstNumber = null;
 let currentNumber = '';
-let currentOperation = false;
+let currentOperation = null;
 let previousOperationResult = null; // stores the previous result on operator for chained operations
 
-// basic functions of a calculator
 
-function add(a,b) {
-  return a + b;
-}
-function subtract(a,b) {
-  return a - b;
-}
-function multiply(a,b) {
-  return a * b;
-}
-function divide(a,b) {
-  return a / b;
+function appendToDisplay(value) {
+  // stops the user inputting a 0 as first number - can only start with a number 1 - 9 or decimal  
+  if (display.innerText === '0' && value === '0') return;  
+  
+  // If the user tries to input more than one decimal point, ignore the input
+  if (value === '.' && currentNumber.includes('.')) {
+    return;
+  }
+  
+  if (isNaN(value) && value !== '.') {
+    // Operator button clicked
+    if (currentOperation !== null) {
+      // An operation has already been chosen, so calculate the result
+      operate();
+  
+    }
+    currentOperation = value;
+    if (previousOperationResult !== null) {
+      firstNumber = previousOperationResult;
+    } else {
+      firstNumber = parseFloat(currentNumber);
+    }
+    currentNumber = ''; 
+  } else {
+    // Digit or decimal button clicked
+    currentNumber += value;
+    display.innerText = currentNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
 }
 
-// test basic functions - in console
-let a = 100;
-let b = 50;
-console.log(add(a,b), subtract(a,b), multiply(a,b), divide(a,b));
-
-// create operate function
+function clearDisplay() {
+  // Clear the current number and operation
+  firstNumber = null;
+  previousOperationResult = null;
+  currentNumber = '';
+  currentOperation = null;
+  //result = null;
+  display.innerText = '0';
+}
 
 function operate() {
   if (currentOperation === null || firstNumber === null) {
@@ -81,46 +100,6 @@ function operate() {
   // Reset current number and operation
   currentNumber = '';
   currentOperation = null;  
-}
-
-function appendToDisplay(value) {
-  // stops the user inputting a 0 as first number - can only start with a number 1 - 9 or decimal  
-  if (display.innerText === '0' && value === '0') return;  
-  
-  // If the user tries to input more than one decimal point, ignore the input
-  if (value === '.' && currentNumber.includes('.')) {
-    return;
-  }
-  
-  if (isNaN(value) && value !== '.') {
-    // Operator button clicked
-    if (currentOperation == true) {
-      // An operation has already been chosen, so calculate the result
-      operate();
-      currentOperation = true;
-    }
-    currentOperation = value;
-    if (previousOperationResult !== null) {
-      firstNumber = previousOperationResult;
-    } else {
-      firstNumber = parseFloat(currentNumber);
-    }
-    currentNumber = ''; 
-  } else {
-    // Digit or decimal button clicked
-    currentNumber += value;
-    display.innerText = currentNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-}
-
-function clearDisplay() {
-  // Clear the current number and operation
-  firstNumber = null;
-  previousOperationResult = null;
-  currentNumber = '';
-  currentOperation = null;
-  //result = null;
-  display.innerText = '0';
 }
 
 function clickEqual() {
