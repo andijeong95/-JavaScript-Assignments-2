@@ -12,7 +12,7 @@ display.innerText = '0';
 let firstNumber = '';
 let currentNumber = '';
 let currentOperation = false;
-let previousOperationResult = null;
+let previousOperationResult = null; // stores the previous result on operator for chained operations
 
 // basic functions of a calculator
 
@@ -66,7 +66,6 @@ function operate() {
         result /= secondNumber;
       }
     }
-
     if (previousOperationResult === currentOperation) {
       return previousOperationResult;
     }
@@ -75,8 +74,10 @@ function operate() {
   // Store the result as previous operation result
   previousOperationResult = result;
   // Update the display - for display numbers longer than 3 digits length, add commas in appropriate positions
-  display.innerText = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+  display.innerText = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // regex
+  
+  // todo: fix numbers after the decimal to NOT show commas
+  
   // Reset current number and operation
   currentNumber = '';
   currentOperation = null;  
@@ -112,7 +113,6 @@ function appendToDisplay(value) {
   }
 }
 
-
 function clearDisplay() {
   // Clear the current number and operation
   firstNumber = null;
@@ -122,10 +122,6 @@ function clearDisplay() {
   //result = null;
   display.innerText = '0';
 }
-
-
-
-
 
 function clickEqual() {
   if (currentNumber !== '' && currentOperation !== null) {
